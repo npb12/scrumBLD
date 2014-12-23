@@ -1,0 +1,5 @@
+[client]
+database = scrum
+user = django
+password = 'Dj4ng0'
+default-character-set = utf8

@@ -7,6 +7,7 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -26,6 +27,11 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+template_dir = "/var/www/scrum/templates"
+TEMPLATE_DIRS = (
+    template_dir
+)
+
 
 # Application definition
 
@@ -36,7 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'scrum',
     'south',
+    'sample',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,4 +90,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+MEDIA_ROOT = '/var/www/scrum/scrum/media/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = '/var/www/scrum/scrum/static/'
 STATIC_URL = '/static/'
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+

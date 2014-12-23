@@ -1,0 +1,13 @@
+<html>
+<head>
+{% load staticfiles %}
+<link type="text/css" href="{% static "css/style.css" %}" rel="Stylesheet" />
+</head>
+    <body>
+	hello from scrumBLD!
+<br>
+<br>
+{% block content %}
+{% endblock %}
+    </body>
+</html>

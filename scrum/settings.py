@@ -27,9 +27,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-template_dir = "/var/www/scrum/templates"
+template_dir = "/var/www/scrumbld/templates"
 TEMPLATE_DIRS = (
-    template_dir
+    template_dir,
 )
 
 
@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scrum',
-    'south',
     'sample',
 )
 

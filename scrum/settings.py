@@ -27,7 +27,13 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-template_dir = "/var/www/scrumbld/templates"
+LAPTOP = True
+
+if LAPTOP:
+    template_dir = "templates"
+else:
+    template_dir = "/var/www/scrumbld/templates"
+
 TEMPLATE_DIRS = (
     template_dir,
 )
@@ -44,6 +50,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'scrum',
     'sample',
+    'users',
+    'projects',
 )
 
 MIDDLEWARE_CLASSES = (

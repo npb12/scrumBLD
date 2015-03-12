@@ -1,0 +1,38 @@
+{% load staticfiles %}
+   <li class="nav-heading">User</li>
+   <li>
+      <a href="#" title="Color options" data-toggle="collapse-next" class="has-submenu">
+         <em class="fa fa-tint"></em>
+         <span class="item-text">Themes</span>
+      </a>
+      <!-- START SubMenu item-->
+      <ul class="nav collapse">
+         <li>
+            <a href="#" title="Option 1" data-toggle="load-css" data-uri="{% static "app/css/wintermin-theme-a.css" %}" class="no-submenu">
+               <span class="item-text">Color option 1</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" title="Option 2" data-toggle="load-css" data-uri="{% static "app/css/wintermin-theme-b.css" %}" class="no-submenu">
+               <span class="item-text">Color option 2</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" title="Option 3" data-toggle="load-css" data-uri="{% static "app/css/wintermin-theme-c.css" %}" class="no-submenu">
+               <span class="item-text">Color option 3</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" title="Option 4" data-toggle="load-css" data-uri="{% static "app/css/wintermin-theme-d.css" %}" class="no-submenu">
+               <span class="item-text">Color option 4</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" title="Default" data-toggle="load-css" data-uri="#" class="no-submenu">
+               <span class="item-text">Default</span>
+            </a>
+         </li>
+      </ul>
+      <!-- END SubMenu item-->
+   </li>
+   <!-- END Theme color options-->

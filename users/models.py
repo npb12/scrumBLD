@@ -16,4 +16,3 @@ class UserProfile(models.Model):
   class Meta:
     ordering = ['user']
 
-# Create your models here.

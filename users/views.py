@@ -29,10 +29,40 @@ def register(request):
 @login_required
 def profile(request):
   c = {
-          'show_sidebar': True,
-          'sidebar': 'basics/sidebar.html',
+          'title': "Profile",
           }
   return render(request, "pages/users/profile.html", c)
 
 
+@login_required
+def messages(request):
+  c = {
+          'sidebar': "basics/sidebar.html",
+          'title': "Messages",
+          }
+  return render(request, "pages/users/messages.html", c)
+
+
+@login_required
+def friends(request):
+  c = {
+          'title': "Friends",
+          }
+  return render(request, "pages/users/friends.html", c)
+
+
+@login_required
+def projects(request):
+  c = {
+          'title': "Projects",
+          }
+  return render(request, "pages/users/projects.html", c)
+
+
+@login_required
+def requests(request):
+  c = {
+          'title': "Project Requests",
+          }
+  return render(request, "pages/users/requests.html", c)
 # Create your views here.

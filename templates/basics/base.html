@@ -85,8 +85,9 @@
       <!-- START aside-->
 
 
-      {% block sidebar %}
-      {% endblock %}
+      {% if sidebar %}
+        {% include sidebar %}
+      {% endif %}
       
       
       <!-- End aside-->

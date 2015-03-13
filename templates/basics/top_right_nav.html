@@ -6,11 +6,17 @@
                   </a>
                </li>
                {% if user.is_authenticated %}
+
+
+
+
+
+
                <!-- START Alert menu-->
                <li class="dropdown dropdown-list">
                   <a href="#" data-toggle="dropdown" data-play="fadeIn" class="dropdown-toggle">
                      <em class="fa fa-bell-o"></em>
-                     <div class="label label-info">35</div>
+                     <div class="label label-danger">{{ notification_count }}</div>
                   </a>
                   <!-- START Dropdown menu-->
                   <ul class="dropdown-menu">
@@ -72,47 +78,43 @@
                   <!-- END Dropdown menu-->
                </li>
                <!-- END Alert menu-->
+
+
+
+
                <!-- START User menu-->
                <li class="dropdown">
                   <a href="#" data-toggle="dropdown" data-play="fadeIn" class="dropdown-toggle">
-                     <em class="fa fa-bars"></em>
+                    {{ user.username }}
                   </a>
                   <!-- START Dropdown menu-->
                   <ul class="dropdown-menu">
-                     <li>
-                        <div class="p">
-                           <p>Overall progress</p>
-                           <div class="progress progress-striped progress-xs m0">
-                              <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-success progress-70">
-                                 <span class="sr-only">70% Complete</span>
-                              </div>
-                           </div>
-                        </div>
-                     </li>
-                     <li class="divider"></li>
-                     <li><a href="#">Profile</a>
-                     </li>
-                     <li><a href="#">Settings</a>
-                     </li>
-                     <li><a href="#">Notifications<div class="label label-info pull-right">5</div></a>
-                     </li>
-                     <li><a href="#">Messages<div class="label label-danger pull-right">10</div></a>
-                     </li>
-                     <li><a href="/user/logout/?next=/user/logged-out/">Logout</em></a></li>
-                     </li>
+                    <li><a href="{% url 'users.views.profile' %}"><em class="fa fa-cogs">&nbsp;</em> Profile</a></li>
+                    <li><a href="{% url 'users.views.messages' %}"><em class="fa fa-envelope-o">&nbsp;</em> Messages<div class="label label-danger pull-right">10</div></a></li>
+                    <li><a href="{% url 'users.views.friends' %}"><em class="fa fa-users">&nbsp;</em> Friends</a></li>
+                    <li><a href="{% url 'users.views.projects' %}"><em class="fa fa-clipboard">&nbsp;</em> Projects</a></li>
+                    <li><a href="{% url 'users.views.requests' %}"><em class="fa fa-check-square-o">&nbsp;</em> Requests</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/user/logout/?next=/user/logged-out/"><em class="fa fa-sign-out">&nbsp;</em> Logout</em></a></li>
                   </ul>
                   <!-- END Dropdown menu-->
                </li>
                <!-- END User menu-->
+
+
                <!-- START Contacts button-->
+               {% comment %}
                <li>
                   <a href="#" data-toggle-state="offsidebar-open">
                      <em class="fa fa-comment-o"></em>
                   </a>
                </li>
+               {% endcomment %}
                <!-- END Contacts menu-->
+
+
+
                 {% else %}
-               <li><a href="/register/">Register</a></li>
-               <li><a data-toggle="tooltip" data-placement="bottom" data-original-title="Login" href="/user/login/"><em class="fa fa-sign-in"></em></a></li>
+               <li><a data-toggle="tooltip" data-placement="bottom" data-original-title="Login or Register" href="/user/login/"><em class="fa fa-sign-in"></em></a></li>
                {% endif %}
             </ul>

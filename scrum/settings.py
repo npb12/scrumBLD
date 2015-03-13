@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'scrum',
     'sample',
     'users',
@@ -64,6 +65,9 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'scrum.urls'
+
+
+LOGIN_REDIRECT_URL = "/user/profile/"
 
 WSGI_APPLICATION = 'scrum.wsgi.application'
 

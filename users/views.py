@@ -11,8 +11,10 @@ from users.models import UserProfile
 
 def register(request):
   if request.method == 'POST':
+    print("posting")
     form = UserCreationForm(request.POST)
     if form.is_valid():
+      print("is valid")
       new_user = form.save()
       profile = UserProfile(user = new_user)
       profile.save()
@@ -23,6 +25,14 @@ def register(request):
   else:
     form = UserCreationForm()
   return render(request, "registration/register.html", { 'form': form, })
+
+@login_required
+def profile(request):
+  c = {
+          'show_sidebar': True,
+          'sidebar': 'basics/sidebar.html',
+          }
+  return render(request, "pages/users/profile.html", c)
 
 
 # Create your views here.

@@ -1,0 +1,120 @@
+            <ul class="nav navbar-nav navbar-right">
+               <!-- Search icon-->
+               <li>
+                  <a href="#" data-toggle="navbar-search">
+                     <em class="fa fa-search"></em>
+                  </a>
+               </li>
+               {% if user.is_authenticated %}
+
+
+
+
+
+
+               <!-- START Alert menu-->
+               <li class="dropdown dropdown-list">
+                  <a href="#" data-toggle="dropdown" data-play="fadeIn" class="dropdown-toggle">
+                     <em class="fa fa-bell-o"></em>
+                     <div class="label label-danger">{{ notification_count }}</div>
+                  </a>
+                  <!-- START Dropdown menu-->
+                  <ul class="dropdown-menu">
+                     <li>
+                        <!-- START list group-->
+                        <div class="list-group">
+                           <!-- list item-->
+                           <a href="#" class="list-group-item">
+                              <div class="media">
+                                 <div class="pull-left">
+                                    <em class="fa fa-envelope-o fa-2x text-success"></em>
+                                 </div>
+                                 <div class="media-body clearfix">
+                                    <div class="media-heading">Unread messages</div>
+                                    <p class="m0">
+                                       <small>You have 10 unread messages</small>
+                                    </p>
+                                 </div>
+                              </div>
+                           </a>
+                           <!-- list item-->
+                           <a href="#" class="list-group-item">
+                              <div class="media">
+                                 <div class="pull-left">
+                                    <em class="fa fa-cog fa-2x"></em>
+                                 </div>
+                                 <div class="media-body clearfix">
+                                    <div class="media-heading">New settings</div>
+                                    <p class="m0">
+                                       <small>There are new settings available</small>
+                                    </p>
+                                 </div>
+                              </div>
+                           </a>
+                           <!-- list item-->
+                           <a href="#" class="list-group-item">
+                              <div class="media">
+                                 <div class="pull-left">
+                                    <em class="fa fa-fire fa-2x"></em>
+                                 </div>
+                                 <div class="media-body clearfix">
+                                    <div class="media-heading">Updates</div>
+                                    <p class="m0">
+                                       <small>There are
+                                          <span class="text-primary">2</span>new updates available</small>
+                                    </p>
+                                 </div>
+                              </div>
+                           </a>
+                           <!-- last list item -->
+                           <a href="#" class="list-group-item">
+                              <small>Unread notifications</small>
+                              <span class="badge">14</span>
+                           </a>
+                        </div>
+                        <!-- END list group-->
+                     </li>
+                  </ul>
+                  <!-- END Dropdown menu-->
+               </li>
+               <!-- END Alert menu-->
+
+
+
+
+               <!-- START User menu-->
+               <li class="dropdown">
+                  <a href="#" data-toggle="dropdown" data-play="fadeIn" class="dropdown-toggle">
+                    {{ user.username }}
+                  </a>
+                  <!-- START Dropdown menu-->
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'users.views.profile' %}"><em class="fa fa-cogs">&nbsp;</em> Profile</a></li>
+                    <li><a href="{% url 'users.views.messages' %}"><em class="fa fa-envelope-o">&nbsp;</em> Messages<div class="label label-danger pull-right">10</div></a></li>
+                    <li><a href="{% url 'users.views.friends' %}"><em class="fa fa-users">&nbsp;</em> Friends</a></li>
+                    <li><a href="{% url 'users.views.projects' %}"><em class="fa fa-clipboard">&nbsp;</em> Projects</a></li>
+                    <li><a href="{% url 'users.views.requests' %}"><em class="fa fa-check-square-o">&nbsp;</em> Requests</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/user/logout/?next=/user/logged-out/"><em class="fa fa-sign-out">&nbsp;</em> Logout</em></a></li>
+                  </ul>
+                  <!-- END Dropdown menu-->
+               </li>
+               <!-- END User menu-->
+
+
+               <!-- START Contacts button-->
+               {% comment %}
+               <li>
+                  <a href="#" data-toggle-state="offsidebar-open">
+                     <em class="fa fa-comment-o"></em>
+                  </a>
+               </li>
+               {% endcomment %}
+               <!-- END Contacts menu-->
+
+
+
+                {% else %}
+               <li><a data-toggle="tooltip" data-placement="bottom" data-original-title="Login or Register" href="/user/login/"><em class="fa fa-sign-in"></em></a></li>
+               {% endif %}
+            </ul>

@@ -1,0 +1,25 @@
+   {% load staticfiles %}
+      <aside class="aside">
+         <!-- START Sidebar (left)-->
+         <nav class="sidebar">
+            <ul class="nav">
+               <!-- START Menu-->
+               <li class="nav-heading">Friends</li>
+               {% if friend_count = 0 %}
+               <li class="msg-item"><a href="">Add some friends!</a></li>
+               {% else %}
+               <li class="msg-item"><a href="">Lesley Knope<br></a></li>
+               <li class="msg-item"><a href="">Lesley Knope<br></a></li>
+               <li class="msg-item"><a href="">Pete Stamos<br></a></li>
+               <li class="msg-item"><a href="">Rudolph Dog<br></a></li>
+               <li class="msg-item"><a href="">Santa Clause<br></a></li>
+               {% endif %}
+               <li><br><br></li>
+               <li class="nav-heading">Friend Requests</li>
+               <li class="msg-item"><a href="">Lesley Knope<br></a></li>
+               <li class="msg-item"><a href="">Lesley Knope<br></a></li>
+               <!-- END Menu-->
+            </ul>
+         </nav>
+         <!-- END Sidebar (left)-->
+      </aside>

@@ -27,7 +27,13 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-template_dir = "/var/www/scrumbld/templates"
+LAPTOP = True
+
+if LAPTOP:
+    template_dir = "templates"
+else:
+    template_dir = "/var/www/scrumbld/templates"
+
 TEMPLATE_DIRS = (
     template_dir,
 )
@@ -42,8 +48,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'scrum',
     'sample',
+    'users',
+    'projects',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,6 +65,9 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'scrum.urls'
+
+
+LOGIN_REDIRECT_URL = "/user/profile/"
 
 WSGI_APPLICATION = 'scrum.wsgi.application'
 

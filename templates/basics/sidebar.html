@@ -1,0 +1,32 @@
+   {% load staticfiles %}
+      <aside class="aside">
+         <!-- START Sidebar (left)-->
+         <nav class="sidebar">
+            <ul class="nav">
+               <!-- START Menu-->
+               <li class="nav-heading">Main</li>
+               <li>
+                  <a href="" title="Dashboard" data-toggle="" class="no-submenu">
+                     <em class="fa fa-dot-circle-o"></em>
+                     <span class="item-text">Projects</span>
+                  </a>
+               </li>
+               <li>
+                  <a href="" title="Dashboard" data-toggle="" class="no-submenu">
+                     <em class="fa fa-question-circle"></em>
+                     <span class="item-text">FAQs</span>
+                  </a>
+               </li>
+               <li>
+                  <a href="" title="Dashboard" data-toggle="" class="no-submenu">
+                     <em class="fa fa-sign-in"></em>
+                     <span class="item-text">Login</span>
+                  </a>
+               </li>
+               {% include "basics/user_nav.html" %}
+               <!-- END Menu-->
+            </ul>
+            <br><br>
+         </nav>
+         <!-- END Sidebar (left)-->
+      </aside>

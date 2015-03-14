@@ -1,5 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700);
-@import url(http://fonts.googleapis.com/css?family=Lato:300,300italic);
 /**
  * 
  * Wintermin - Bootstrap Admin Theme - Main Stylesheet
@@ -277,7 +276,7 @@ fieldset .form-group {
    Component: typo.less
  ========================================================================== */
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #656565;
 }
 h1,
@@ -736,14 +735,6 @@ body {
 .sidebar .nav .nav > li > a:hover,
 .sidebar .nav .nav > li > .nav-item:hover {
   color: #232224;
-}
-.sidebar .nav > .msg-item {
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-.sidebar .nav li > a > p {
-  color: #A5A6B8;
-  font-size: 11px;
-  text-transform:uppercase;
 }
 .sidebar .nav .nav > li > a:after,
 .sidebar .nav .nav > li > .nav-item:after {

@@ -737,6 +737,14 @@ body {
 .sidebar .nav .nav > li > .nav-item:hover {
   color: #232224;
 }
+.sidebar .nav > .msg-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.sidebar .nav li > a > p {
+  color: #A5A6B8;
+  font-size: 11px;
+  text-transform:uppercase;
+}
 .sidebar .nav .nav > li > a:after,
 .sidebar .nav .nav > li > .nav-item:after {
   content: "";

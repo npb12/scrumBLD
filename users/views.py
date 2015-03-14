@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
-from users.models import UserProfile
+from users.models import UserProfile, Friend
 
 
 def register(request):
@@ -36,8 +36,12 @@ def profile(request):
 
 @login_required
 def messages(request):
+  
+  lst = ['Hello'] * 50
+
   c = {
-          'sidebar': "basics/sidebar.html",
+          'lst': lst, 
+          'sidebar': "pages/users/sidebars/messages.html",
           'title': "Messages",
           }
   return render(request, "pages/users/messages.html", c)
@@ -45,8 +49,15 @@ def messages(request):
 
 @login_required
 def friends(request):
+  friends = Friend.objects.all()
+  friend_count = friends.count()
+  users = User.objects.all()
   c = {
+          'sidebar': "pages/users/sidebars/friends.html",
           'title': "Friends",
+          'friends': friends,
+          'friend_count': friend_count,
+          'users':users,
           }
   return render(request, "pages/users/friends.html", c)
 

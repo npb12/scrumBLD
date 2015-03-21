@@ -24,6 +24,7 @@
    <link rel="stylesheet" href="{% static "vendor/fontawesome/css/font-awesome.min.css" %}">
    <link rel="stylesheet" href="{% static "vendor/animo/animate+animo.css" %}">
    <link rel="stylesheet" href="{% static "vendor/csspinner/csspinner.min.css" %}">
+   <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
    <!-- START Page Custom CSS-->
    <!-- END Page Custom CSS-->
    <!-- App CSS-->
@@ -43,7 +44,7 @@
          <div class="navbar-header">
             <a href="/landing/" class="navbar-brand">
                <div class="brand-logo">
-                  <img src="{% static "img/logo.png" %}" alt="App Logo" class="img-responsive">
+                 <p style="font-size: 25px; vertical-align:center">scrum<b>BLD</b></p>
                </div>
                <div class="brand-logo-collapsed">
                   <img src="{% static "img/logo-single.png" %}" alt="App Logo" class="img-responsive">
@@ -64,6 +65,7 @@
 
 
             <!-- START Right Navbar-->
+
             {% include "basics/top_right_nav.html" %}
             <!-- END Right Navbar-->
 
@@ -99,8 +101,8 @@
       {% endif %}
          <!-- START Page content-->
          <div class="main-content">
-           <h3>{{ title }}
-               <small>{{ subtitle }}</small>
+           <h3 id="page-title">{{ title }}<br>
+              <small>{{ subtitle }}</small>
             </h3>
             <div class="row">
                <div class="col-lg-12">

@@ -1,0 +1,72 @@
+{% extends "basics/base.html" %}
+
+{% block content %}
+
+
+<div class="row">
+  <!-- START Associates -->
+  <div class="col-lg-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Associates
+      </div>
+      <div class="panel-body">
+        <ul>
+        {% for a in associates %}
+          <li>{{ a }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="panel-footing">
+        <br>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- START Pending Associates -->
+  <div class="col-lg-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Pending Associates
+      </div>
+      <div class="panel-body">
+        {% for a in pending %}
+        <div class="well">
+          <div class="col-lg-2">
+            <h4>{{ a.requesting }}</h4>
+            <h6>{{ a.dateRequested }}</h6>
+          </div>
+          <div class="col-lg-2 text-right">
+            <button class="btn btn-sm btn-default">Connect</button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="panel-footing">
+        <br>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- START Pending Requests -->
+  <div class="col-lg-4">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        Pending Requests
+      </div>
+      <div class="panel-body">
+        <ul>
+        {% for a in request %}
+          <li>{{ a.requesting }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="panel-footing">
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

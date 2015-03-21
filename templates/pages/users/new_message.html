@@ -1,0 +1,35 @@
+{% extends "basics/base.html" %}
+
+{% block content %}
+
+{% load widget_tweaks %}
+
+<div class="row">
+  <div class="col-lg-12">
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{ form.message|add_class:"form-control" }}
+      {{ form.message.errors }}
+      <br>
+      <p style="visibility:hidden">
+      {{ form.fromUser }}
+      {{ form.toUser }}
+      </p>
+      <button type="submit" class="btn btn-labeled btn-success">
+        <span class="btn-label">
+          <i class="fa fa-envelope-o"></i>
+        </span>
+        Send
+      </button>
+      <button type="button" class="btn btn-labeled btn-danger">
+        <span class="btn-label">
+          <i class="fa fa-times"></i>
+        </span>
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

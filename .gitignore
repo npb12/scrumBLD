@@ -1,2 +1,6 @@
 scrumbld/settings.py
 db.cnf
+/projects/migrations/
+/users/migrations/
+*.pyc
+

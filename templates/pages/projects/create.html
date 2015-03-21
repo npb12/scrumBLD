@@ -1,0 +1,103 @@
+{% extends "basics/base.html" %}
+
+{% block content %}
+<br>
+<div class="main-content">
+  <div class="row">
+<div class="col-lg-8">
+                  <form method="post" action="#">
+                  {% csrf_token %}
+                  {% load widget_tweaks %}
+                  {% if form.errors %}
+                  <p style="text-align: center">The project form input was incorrrect.</p>
+                  {% endif %}
+                  <br>
+                  
+                  <div class="form-group">
+                  
+                     <div class="panel panel-default">
+                        <div class="panel-heading" style="text-align:center;">
+                            <div class="panel-title">Create a Project</div>
+                        </div>
+                        <div class="panel-body">
+                           {% if form.errors %}
+                           <div class="form-group has-error">
+                           {% else %}
+                           <div class="form-group">
+                           {% endif %}
+                              <label class="control-label">{{ form.title.label }}</label>
+                               <div class="col-lg-13">
+                               {{ form.title|add_class:"form-control" }}
+                               </div>
+                           </div>
+                           {% if form.errors %}
+                           <div class="form-group has-error">
+                           {% else %}
+                           <div class="form-group">
+                           {% endif %}
+                              <label class="control-label">{{ form.skill.label }}</label>
+                               <div class="col-lg-13">
+                               {{ form.skill|add_class:"form-control" }}
+                               </div>
+                           </div>
+                           {% if form.errors %}
+                           <div class="form-group has-error">
+                           {% else %}
+                           <div class="form-group">
+                           {% endif %}
+                              <label class="control-label">{{ form.description.label }}</label>
+                               <div class="col-lg-13">
+                               {{ form.project_description|attr:"rows:10" }}
+                               {{ form.description|add_class:"form-control" }}
+                               </div>
+                           </div>
+                           {% if form.errors %}
+                           <div class="form-group has-error">
+                           {% else %}
+                           <div class="form-group">
+                           {% endif %}
+                              <label class="control-label">{{ form.details.label }}</label>
+                               <div class="col-lg-13">
+                               {{ form.details|add_class:"form-control" }}
+                               </div>
+                           </div>
+                           {% if form.errors %}
+                           <div class="form-group has-error">
+                           {% else %}
+                           <div class="form-group">
+                           {% endif %}
+                              <label class="col-lg-1 control-label">{{ form.isPrivate.label }}</label>
+                               <div class="col-lg-13">
+                               {{ form.isPrivate|add_class:"form-control" }}
+                               </div>
+                           </div>
+                            <br>
+                          <div class="required">* Required fields</div>
+                        </div>
+                        <div class="panel-footer">
+                            <br>
+                           <div class="clearfix">
+                              <div class="pull-left">
+                              </div>
+                              <div class="pull-right">
+                                 <button type="submit" class="btn btn-primary"> Create Project </button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- END panel-->
+                  
+               </div></form>
+                      </div>
+    </div>
+    </div>
+</div>
+                   </div>
+
+
+                
+
+
+
+{% endblock %}
+

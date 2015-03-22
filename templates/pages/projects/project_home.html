@@ -1,7 +1,73 @@
 {% extends "basics/base.html" %}
 
+
 {% block content  %}
 
-Hello from the projects home
+
+<div class="row">
+  <div class="col-md-9">
+    <h4>Description</h4>
+    {{ project.details }}
+  </div>
+
+  <div class="col-md-3">
+    {% if project.createdBy.user = request.user %}
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <div class="btn-group mb-lg">
+          <button class="btn btn-default" type="button">Project Menu</button>
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Edit Details</a></li>
+            <li><a href="#">Requests</a></li>
+            <li><a href="#">Role Management</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Team Members
+      </div>
+      <div class="panel-body">
+        <div class="row"><div class="col-md-6">{{ project.createdBy }}</div><div class="col-md-6 text-right">Project Creator</div></div>
+        <div class="row">
+          {% for t in team %}
+          <div class="col-md-6">
+            {{ t }}
+          </div>
+          <div class="col-md-6 text-right">
+            
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Skills
+      </div>
+      <div class="panel-body">
+        <p class="label label-danger">JavaScript</p>
+        <p class="label label-danger">Front End Developer</p>
+        <p class="label label-success">Marketing</p>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <center>
+          <p>Want to join the <strong>{{ project.title }}</strong> team?</p>
+          <br>
+          <button class="btn btn-info">Request to Join</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

@@ -10,6 +10,7 @@ from django.core import serializers
 
 from django.contrib.auth.models import User
 from users.models import UserProfile, Associate, Message, NewMessageForm
+from projects.models import Project
 
 import datetime
 
@@ -174,8 +175,10 @@ def accept_associate(request):
 
 @login_required
 def projects(request):
+  projects = Project.objects.filter(createdBy = request.user)
   c = {
-          'title': "Projects",
+          'title': "My Projects",
+          'projects': projects, 
           }
   return render(request, "pages/users/projects.html", c)
 

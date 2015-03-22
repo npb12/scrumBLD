@@ -17,10 +17,11 @@ class Migration(migrations.Migration):
             name='Associate',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('dateRequested', models.DateField(default=datetime.date(2015, 3, 16), verbose_name=b'Date Requested')),
-                ('dateAccepted', models.DateField(default=datetime.date(2015, 3, 16), verbose_name=b'Date Accepted')),
-                ('requested', models.ForeignKey(related_name='requested_user', verbose_name=b'Requested User', to=settings.AUTH_USER_MODEL)),
-                ('requesting', models.ForeignKey(related_name='requesting_user', verbose_name=b'Requesting User', to=settings.AUTH_USER_MODEL)),
+                ('dateRequested', models.DateField(default=datetime.date(2015, 3, 21), verbose_name=b'Date Requested')),
+                ('dateAccepted', models.DateField(null=True, verbose_name=b'Date Accepted', blank=True)),
+                ('dateRemoved', models.DateField(null=True, verbose_name=b'Date Removed', blank=True)),
+                ('requested', models.ForeignKey(related_name='requested_user', verbose_name=b'Which user would they like to connect with?', to=settings.AUTH_USER_MODEL)),
+                ('requesting', models.ForeignKey(related_name='requesting_user', verbose_name=b'Who is making the request?', to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
@@ -31,7 +32,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('message', models.TextField(verbose_name=b'Message')),
-                ('dateSent', models.DateField(default=datetime.date(2015, 3, 16), verbose_name=b'Date Sent')),
+                ('dateSent', models.DateTimeField(default=datetime.datetime(2015, 3, 21, 14, 18, 45, 95563), verbose_name=b'Date Sent')),
                 ('isSeen', models.BooleanField(default=False, verbose_name=b'Seen?')),
                 ('fromUser', models.ForeignKey(related_name='from_user', verbose_name=b'From', to=settings.AUTH_USER_MODEL)),
                 ('toUser', models.ForeignKey(related_name='to_user', verbose_name=b'To', to=settings.AUTH_USER_MODEL)),
@@ -44,6 +45,7 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('lastConvo', models.CharField(max_length=5, null=True, verbose_name=b'PK of last conversation', blank=True)),
                 ('github', models.URLField(null=True, verbose_name=b'GitHub Account', blank=True)),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],

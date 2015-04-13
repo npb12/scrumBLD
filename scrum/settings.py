@@ -86,6 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
             'read_default_file': './db.cnf',
+            'init_command':'SET foreign_key_checks = 0;',
         }
     }
 }

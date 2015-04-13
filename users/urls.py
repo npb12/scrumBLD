@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^', include('django.contrib.auth.urls')),
+    url(r'^profile/$', dashboard),
     url(r'^dashboard/$', dashboard),
     url(r'^new-message/$', new_message),
     url(r'^get-messages/$', get_messages),

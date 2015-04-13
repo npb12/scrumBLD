@@ -2,10 +2,7 @@
 
 {% block content %}
 
-    <!-- 
     <div class="col-md-10">
-    -->
-    <div class="col-md-12">
       {% for p in projects %}
       <div class="well">
         <div class="row">
@@ -30,13 +27,20 @@
           </div>
         </div>
       </div>
+      {% empty %}
+      You're not part of any projects yet. 
       {% endfor %}
     </div>
-    <!-- 
     <div class="col-md-2">
-      Other stuff over here?
+      <center>
+        <a href="{% url 'projects.views.edit_project' %}" class="btn btn-labeled btn-info" type="button">
+          <span class="btn-label">
+            <i class="fa fa-plus"></i>
+          </span>
+          Start a Project
+        </a>
+      </center>
     </div>
-    -->
 
 
 

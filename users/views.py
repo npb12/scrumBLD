@@ -34,9 +34,11 @@ def register(request):
 def dashboard(request):
   
   associates = Associate.objects.filter(Q(requesting = request.user) | Q(requested = request.user)).exclude(dateAccepted = None).filter(dateRemoved = None)
+  projects = Project.objects.filter(createdBy = request.user)
   c = {
           'title': "Dashboard",
           'associates': associates,
+          'projects': projects,
           }
   return render(request, "pages/users/dashboard.html", c)
 

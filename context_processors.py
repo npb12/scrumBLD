@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 
 def user_menu(request):
-    new_messages = Message.objects.filter(toUser=request.user).filter(isSeen=False).count()
-    associate_requests = Associate.objects.filter(requested = request.user).filter(dateAccepted = None).filter(dateRemoved = None).count()
+    new_messages = Message.objects.filter(toUser=request.user.pk).filter(isSeen=False).count()
+    associate_requests = Associate.objects.filter(requested = request.user.pk).filter(dateAccepted = None).filter(dateRemoved = None).count()
 
     notifications = new_messages + associate_requests
 

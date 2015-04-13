@@ -9,6 +9,8 @@ from projects.views import *
 urlpatterns = patterns('',
     url(r'^$', projects),
     url(r'^details/(?P<pid>\d+)/$', details),
-    url(r'^project-details/$', edit_project),
-    url(r'^project-details/(?P<pid>\d+)/$', edit_project),
+    url(r'^edit-details/$', edit_project),
+    url(r'^edit-details/(?P<pid>\d+)/$', edit_project),
+    url(r'^project-skills/(?P<pid>\d+)/$', temp_project_skills),
+    url(r'^add-remove-skill/(?P<pid>\d+)/(?P<sid>\d+)/(?P<ar>\w)/$', addRemoveSkill),
 )

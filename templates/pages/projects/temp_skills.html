@@ -1,0 +1,75 @@
+{% extends "basics/base.html" %}
+
+{% block content  %}
+
+<div class="row">
+  <div class="col-md-8">
+    <p>Here you can define which skills you require for your project.
+    <br>When people view your project, they will see what kinds of skills you are looking
+    for from potential team mates.</p>
+
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-3 text-center">
+    <form method="post" action="#" class="form-horizontal">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+
+    <span style="visibility: hidden">{{ form.project }}</span>
+    <h4>Select a skill to add</h4>
+    <br>
+    {{ form.skill|add_class:"form-control" }}
+    {{ form.errors }}
+    {% if form.skill.errors %}
+    <br>{{ form.skill.errors }}
+
+    {% endif %}
+    <br>
+    <button type="submit" class="btn btn-primary btn-labeled">Add Skill
+      <span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
+    </button>
+    </form>
+
+
+  </div>
+  <div class="col-md-3 text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>Chosen Skills</h5>
+      </div>
+      <div class="panel-body" id="chosen-skills">
+        {% for s in skills %}
+        {{ s.skill }}<br>
+        {% endfor %}
+      </div>
+    </div>
+      <br>
+      <a href="{% url 'projects.views.details' p.pk %}" class="btn btn-success btn-labeled">
+        <span class="btn-label"><i class="fa fa-check"></i></span>
+        Back to Project Page
+      </a>
+
+  </div>
+</div>
+<script>
+  function removeChosen(pid, sid, ar, cat, skillName ) {
+    $("#" + sid).remove();
+    $.get("/projects/add-remove-skill/" + pid + "/" + sid + "/" + ar + "/");
+    console.log(cat);
+    var $skill = "<a href='#'" + skillName + "</a><br>"; 
+    if(cat == "W") {
+      $("#webSkills").append($skill);
+    }
+
+  }
+
+  function addChosen(pid, sid, ar, cat, skillName ) {
+    $("#" + sid).remove();
+    $.get("/projects/add-remove-skill/" + pid + "/" + sid + "/" + ar + "/");
+    var $skill = "<a href='#' onclick='removeChosen(" + pid + ", " + sid + ", \"R\", \"" + cat + "\", \"" + skillName + "\")\' class='label label-success'>" + skillName + "</a><br>"
+    $("#chosen-skills").append($skill);
+  }
+</script>
+{% endblock %}

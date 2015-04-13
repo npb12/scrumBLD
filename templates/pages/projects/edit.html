@@ -1,0 +1,89 @@
+{% extends "basics/base.html" %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12">
+    <form method="post" action="#" class="form-horizontal">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    <br>
+    
+    <div class="form-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-body">
+            {% if form.title.errors %}
+            <div class="form-group has-error">
+            {% else %}
+            <div class="form-group">
+            {% endif %}
+              <label class="col-lg-2 control-label">{{ form.title.label }}</label>
+              <div class="col-lg-10">
+                {{ form.title|add_class:"form-control" }}
+              </div>
+            </div>
+
+
+             {% if form.description.errors %}
+             <div class="form-group has-error">
+             {% else %}
+             <div class="form-group">
+             {% endif %}
+                <label class="col-lg-2 control-label">{{ form.description.label }}</label>
+              <div class="col-lg-10">
+                {{ form.description|add_class:"form-control" }}
+              </div>
+             </div>
+
+
+             {% if form.details.errors %}
+             <div class="form-group has-error">
+             {% else %}
+             <div class="form-group">
+             {% endif %}
+                <label class="col-lg-2 control-label">{{ form.details.label }}</label>
+              <div class="col-lg-10">
+                 {{ form.details|add_class:"form-control" }}
+              </div>
+             </div>
+             
+             
+             {% if form.isPrivate.errors %}
+             <div class="form-group has-error">
+             {% else %}
+             <div class="form-group">
+             {% endif %}
+                <label class="col-lg-2 control-label">{{ form.isPrivate.label }}</label>
+              <div class="col-lg-10">
+                 {{ form.isPrivate|add_class:"form-control" }}
+                 </div>
+             </div>
+           </div>
+          </div>
+          <div class="panel-footer">
+              <br>
+             <div class="clearfix">
+                <div class="pull-left">
+                </div>
+                <div class="pull-right">
+                  <button type="submit" class="btn btn-labeled btn-primary"><span class="btn-label"><i class="fa fa-arrow-right"></i></span>Add Skills</button>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!-- END panel-->
+                  
+               </div></form>
+                      </div>
+    </div>
+    </div>
+</div>
+                   </div>
+
+
+                
+
+
+
+{% endblock %}
+

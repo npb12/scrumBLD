@@ -52,9 +52,9 @@
         Skills
       </div>
       <div class="panel-body">
-        <p class="label label-danger">JavaScript</p>
-        <p class="label label-danger">Front End Developer</p>
-        <p class="label label-success">Marketing</p>
+        {% for s in projectSkills %}
+        <p class="label label-success">{{ s.skill.fullName }}</p>
+        {% endfor %}
       </div>
     </div>
 

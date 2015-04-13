@@ -33,7 +33,7 @@
       $("#messages").html('');
       $.each(json, function(i, k) {
         console.log(k.fields.toUser);
-        if(k.fields.toUser == fromID.pk) {
+        if(k.fields.toUser == fromID) {
           $("#messages").append("<li class='timeline-inverted'><div class='timeline-badge default'></div><div class='timeline-date'><p>" + k.fields.dateSent + "</p></div><div class='timeline-panel'><div class='popover right'><div class='arrow'></div><div class='popover-content'>" + k.fields.message + "</div></div></div></li>");
         }
         else {

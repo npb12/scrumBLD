@@ -106,7 +106,12 @@ def messages(request, convoPK=None):
   # Create a new array to hold all the User objects that
   # have messaged the main User
   convo_list = []
-  last_convo = User.objects.get(pk = request.user.userprofile.lastConvo);
+  try:
+    last_convo = User.objects.get(pk = request.user.userprofile.lastConvo);
+    title = last_convo.username
+  except:
+    last_convo = None
+    title = "No messages"
   for c in convos:
     tmp = User.objects.get(pk = c['fromUser'])
     new_messages = msgs.filter(isSeen = False)
@@ -130,7 +135,7 @@ def messages(request, convoPK=None):
           'last_convo': last_convo,
           'convo_list': convo_list,
           'sidebar': "pages/users/sidebars/messages.html",
-          'title': last_convo.username,
+          'title': title,
           }
   return render(request, "pages/users/messages.html", c)
 

@@ -11,7 +11,7 @@
   </div>
 
   <div class="col-md-3">
-    {% if project.createdBy.user = request.user %}
+    {% if project.createdBy == user and user.is_authenticated %}
     <div class="row">
       <div class="col-md-12 text-right">
         <div class="btn-group mb-lg">
@@ -58,15 +58,21 @@
       </div>
     </div>
 
+    {% if user.is_authenticated and not inTeam and not project.createdBy.pk == user.pk %}
     <div class="panel panel-default">
       <div class="panel-body">
         <center>
+          {% if not inTeam and not requested %}
           <p>Want to join the <strong>{{ project.title }}</strong> team?</p>
           <br>
           <button class="btn btn-info">Request to Join</button>
+          {% elif not inTeam and requested %}
+          Your Request to join is pending
+          {% endif %}
         </center>
       </div>
     </div>
+    {% endif %}
   </div>
 </div>
 

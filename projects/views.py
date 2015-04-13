@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from projects.models import Project, Request, EditProjectForm, ProjectSkill, Skill, AddProjectSkillForm
+from users.models import Message
 from django.contrib.auth.decorators import login_required
 from django import forms
 
@@ -137,11 +138,29 @@ def details(request, pid):
   project = Project.objects.get(pk = pid)
   team = Request.objects.filter(requestedProject = project).filter(isRequestAccepted = True)
   projectSkills = ProjectSkill.objects.filter(project = project)
+  inTeam = Request.objects.filter(requestedProject = project).filter(requestedBy = request.user).filter(isRequestAccepted = True).exists()
+  requested = Request.objects.filter(requestedProject = project).filter(requestedBy = request.user).filter(isRequestAccepted = False).exists()
 
   c = {
           'title': project.title,
           'project': project,
           'projectSkills': projectSkills,
           'team': team,
+          'inTeam': inTeam,
+          'requested': requested,
     }
   return render(request, "pages/projects/details.html", c)
+
+
+def request_to_join(request, pid):
+  project = Project.objects.get(pk = pid)
+  msg = request.user.username + " would like to join your team for the project: " + project.title
+  newMsg = Message(fromUser = request.user, toUser = project.createdBy, message = msg)
+  newMsg.save()
+
+  newRq = Request(requestedProject = project, requestedBy = request.user)
+  newRq.save()
+
+  url = "/projects/details/" + pid + "/"
+  return HttpResponseRedirect(url)
+

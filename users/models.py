@@ -46,3 +46,8 @@ class NewMessageForm(ModelForm):
   class Meta:
     model = Message
     fields = ('message', 'toUser', 'fromUser')
+
+class EditProfileForm(ModelForm):
+  class Meta:
+    model = UserProfile
+    fields = ('github', 'user')

@@ -6,8 +6,33 @@
 
 <div class="row">
   <div class="col-md-9">
-    <h4>Description</h4>
-    {{ project.details }}
+    <div class="row">
+      <div class="col-lg-4">
+        <h4>Username</h4>
+      </div>
+      <div class="col-lg-4">
+        <h4>Accepted?</h4>
+        <br>
+        <br>
+      </div>
+    </div>
+    {% for r in requests %}
+    <div class="row">
+      <div class="col-lg-4">
+        {{ r.requestedBy }}
+      </div>
+      <div class="col-lg-4">
+        <label class="switch">
+          {% if r.isRequestAccepted == True %}
+          <input type="checkbox" class="ra-btn" id="{{ r.pk }}" checked>
+          {% else %}
+          <input type="checkbox" class="ra-btn" id="{{ r.pk }}">
+          {% endif %}
+          <span></span>
+        </label>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 
   <div class="col-md-3">
@@ -74,4 +99,14 @@
   </div>
 </div>
 
+<script>
+  $(document).ready(function() {
+      $(".ra-btn").on('click', function() {
+          pid = {{ project.pk }};
+          $.get("/projects/update-request/" + $(this).attr('id') + "/" + pid, function(){
+            location.reload();
+            });
+        });
+  });
+</script>
 {% endblock %}

@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from projects.models import Project, Request, EditProjectForm, ProjectSkill, Skill, AddProjectSkillForm
 from users.models import Message
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django import forms
 
 import json
@@ -138,8 +139,12 @@ def details(request, pid):
   project = Project.objects.get(pk = pid)
   team = Request.objects.filter(requestedProject = project).filter(isRequestAccepted = True)
   projectSkills = ProjectSkill.objects.filter(project = project)
-  inTeam = Request.objects.filter(requestedProject = project).filter(requestedBy = request.user).filter(isRequestAccepted = True).exists()
-  requested = Request.objects.filter(requestedProject = project).filter(requestedBy = request.user).filter(isRequestAccepted = False).exists()
+  if request.user.is_authenticated():
+    inTeam = Request.objects.filter(requestedProject = project).filter(requestedBy = request.user).filter(isRequestAccepted = True).exists()
+    requested = Request.objects.filter(requestedProject = project).filter(requestedBy = request.user).filter(isRequestAccepted = False).exists()
+  else:
+    inTeam = False
+    requested = False
 
   c = {
           'title': project.title,
@@ -152,6 +157,7 @@ def details(request, pid):
   return render(request, "pages/projects/details.html", c)
 
 
+@login_required
 def request_to_join(request, pid):
   project = Project.objects.get(pk = pid)
   msg = request.user.username + " would like to join your team for the project: " + project.title
@@ -163,4 +169,38 @@ def request_to_join(request, pid):
 
   url = "/projects/details/" + pid + "/"
   return HttpResponseRedirect(url)
+
+@login_required
+def requests(request, pid):
+  
+  project = Project.objects.get(pk = pid)
+  team = Request.objects.filter(requestedProject = project).filter(isRequestAccepted = True)
+  projectSkills = ProjectSkill.objects.filter(project = project)
+  requests = Request.objects.filter(requestedProject = project)
+
+  c = {
+          'title': 'Requests',
+          'requests': requests,
+          'project': project,
+          'projectSkills': projectSkills,
+          'team': team,
+    }
+  return render(request, "pages/projects/requests.html", c)
+
+def update_request(request, rid, pid):
+  r = Request.objects.get(pk = rid)
+  print(r)
+  if r.isRequestAccepted == True:
+    print("setting to false")
+    r.isRequestAccepted = False
+    r.save()
+  else:
+    print("setting to true")
+    r.isRequestAccepted = True
+    r.save()
+
+  ret = request.REQUEST.get('next', reverse("projects.views.details", args=(pid,)))
+  return HttpResponseRedirect(ret)
+  
+
 

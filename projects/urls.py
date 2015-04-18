@@ -14,4 +14,6 @@ urlpatterns = patterns('',
     url(r'^project-skills/(?P<pid>\d+)/$', temp_project_skills),
     url(r'^add-remove-skill/(?P<pid>\d+)/(?P<sid>\d+)/(?P<ar>\w)/$', addRemoveSkill),
     url(r'^request-to-join/(?P<pid>\d+)/$', request_to_join),
+    url(r'^requests/(?P<pid>\d+)/$', requests),
+    url(r'^update-request/(?P<rid>\d+)/(?P<pid>\d+)/$', update_request),
 )

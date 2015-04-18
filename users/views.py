@@ -9,8 +9,8 @@ from itertools import chain
 from django.core import serializers
 
 from django.contrib.auth.models import User
-from users.models import UserProfile, Associate, Message, NewMessageForm
-from projects.models import Project
+from users.models import UserProfile, Associate, Message, NewMessageForm, EditProfileForm
+from projects.models import Project, Request
 
 import datetime
 
@@ -107,8 +107,8 @@ def messages(request, convoPK=None):
   # have messaged the main User
   convo_list = []
   try:
-    last_convo = User.objects.get(pk = request.user.userprofile.lastConvo);
-    title = last_convo.username
+    last_convo = None #User.objects.get(pk = request.user.userprofile.lastConvo);
+    title = "Messages" #last_convo.username
   except:
     last_convo = None
     title = "No messages"
@@ -197,3 +197,31 @@ def requests(request):
           }
   return render(request, "pages/users/requests.html", c)
 # Create your views here.
+
+
+def view_profile(request, uid):
+  user = User.objects.get(pk = uid)
+  title = "View Profile - " + user.username
+  projects = Request.objects.filter(isRequestAccepted = True).filter(requestedBy = user)
+
+  c = {
+          'profile_user': user,
+          'title': title,
+          'projects': projects,
+          }
+  return render(request, "pages/users/view_profile.html", c)
+
+
+
+def edit_profile(request, uid):
+  u = User.objects.get(pk = uid)
+  if request.method == "POST":
+    return HttpResponse("posted")
+  else:
+    form = EditProfileForm(instance = u.userprofile)
+
+  c = {
+          'form': form,
+          }
+
+  return render(request, "pages/users/edit_profile.html", c)

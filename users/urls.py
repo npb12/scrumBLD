@@ -14,6 +14,8 @@ urlpatterns = patterns('',
 
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^profile/$', dashboard),
+    url(r'^view-profile/(?P<uid>\d+)/$', view_profile),
+    url(r'^edit-profile/(?P<uid>\d+)/$', edit_profile),
     url(r'^dashboard/$', dashboard),
     url(r'^new-message/$', new_message),
     url(r'^get-messages/$', get_messages),

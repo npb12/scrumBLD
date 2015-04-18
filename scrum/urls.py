@@ -17,7 +17,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^user/', include('users.urls')),
     url(r'^register/', register),
-    url(r'^landing/$', TemplateView.as_view(template_name = "pages/scrum/landing.html")),
     url(r'^$', include('projects.urls')),
     url(r'^projects/', include('projects.urls')),
 )

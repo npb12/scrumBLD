@@ -1,0 +1,127 @@
+{% extends "basics/base.html" %}
+
+{% block content %}
+
+
+<div class="row">
+  <!-- START Associates -->
+  <div class="col-lg-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Associates
+      </div>
+      <div class="panel-body">
+        {% for a in associates %}
+        <div class="well well-sm">
+          <div class="row">
+            <div class="col-lg-6">
+              <h4>{{ a.requesting }}</h4>
+              <h6>{{ a.dateRequested }}</h6>
+            </div>
+            <div class="col-lg-6 text-right">
+              <br>
+              <div class="btn-group mb-sm">
+                <button class="btn btn-default">Actions</button>
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                  <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                  <li><a href="{% url 'users.views.new_message' %}?to={{ a.requesting.pk }}">Send Message</a></li>
+                  <li><a href="#">View Profile</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url 'users.views.remove_associate' %}?aID={{ a.pk }}">Remove</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="panel-footing">
+        <br>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- START Pending Associates -->
+  <div class="col-lg-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Requested Associates
+      </div>
+      <div class="panel-body">
+        {% for a in pending %}
+        <div class="well well-sm">
+          <div class="row">
+            <div class="col-lg-6">
+              <h4>{{ a.requesting }}</h4>
+              <h6>{{ a.dateRequested }}</h6>
+            </div>
+            <div class="col-lg-6 text-right">
+              <br>
+              <div class="btn-group mb-sm">
+                <button class="btn btn-default">Actions</button>
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                  <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                  <li><a href="{% url 'users.views.accept_associate' %}?aID={{ a.pk }}">Accept</a></li>
+                  <li><a href="#">View Profile</a></li>
+                  <li><a href="{% url 'users.views.new_message' %}?to={{ a.requesting.pk }}">Send Message</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Decline</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="panel-footing">
+        <br>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- START Pending Requests -->
+  <div class="col-lg-4">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        Your Requests
+      </div>
+      <div class="panel-body">
+        {% for a in requests %}
+        <div class="well well-sm">
+          <div class="row">
+            <div class="col-lg-6">
+              <h4>{{ a.requested }}</h4>
+              <h6>{{ a.dateRequested }}</h6>
+            </div>
+            <div class="col-lg-6 text-right">
+              <br>
+              <div class="btn-group mb-sm">
+                <button class="btn btn-default">Actions</button>
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                  <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                  <li><a href="#">View Profile</a></li>
+                  <li><a href="{% url 'users.views.new_message' %}?to={{ a.requested.pk }}">Send Message</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url 'users.views.remove_associate' %}?aID={{ a.pk }}">Cancel</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="panel-footing">
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

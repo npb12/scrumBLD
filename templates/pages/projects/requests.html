@@ -1,0 +1,112 @@
+{% extends "basics/base.html" %}
+
+
+{% block content  %}
+
+
+<div class="row">
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-lg-4">
+        <h4>Username</h4>
+      </div>
+      <div class="col-lg-4">
+        <h4>Accepted?</h4>
+        <br>
+        <br>
+      </div>
+    </div>
+    {% for r in requests %}
+    <div class="row">
+      <div class="col-lg-4">
+        {{ r.requestedBy }}
+      </div>
+      <div class="col-lg-4">
+        <label class="switch">
+          {% if r.isRequestAccepted == True %}
+          <input type="checkbox" class="ra-btn" id="{{ r.pk }}" checked>
+          {% else %}
+          <input type="checkbox" class="ra-btn" id="{{ r.pk }}">
+          {% endif %}
+          <span></span>
+        </label>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="col-md-3">
+    {% if project.createdBy == user and user.is_authenticated %}
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <div class="btn-group mb-lg">
+          <button class="btn btn-default" type="button">Project Menu</button>
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            {% include "pages/projects/project_menu.html" %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Team Members
+      </div>
+      <div class="panel-body">
+        <div class="row"><div class="col-md-6">{{ project.createdBy }}</div><div class="col-md-6 text-right">Project Creator</div></div>
+        <div class="row">
+          {% for t in team %}
+          <div class="col-md-6">
+            {{ t }}
+          </div>
+          <div class="col-md-6 text-right">
+            
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Skills
+      </div>
+      <div class="panel-body">
+        {% for s in projectSkills %}
+        <p class="label label-success">{{ s.skill.fullName }}</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if user.is_authenticated and not inTeam and not project.createdBy.pk == user.pk %}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <center>
+          {% if not inTeam and not requested %}
+          <p>Want to join the <strong>{{ project.title }}</strong> team?</p>
+          <br>
+          <a href="{% url 'projects.views.request_to_join' project.pk %}" class="btn btn-info">Request to Join</a>
+          {% elif not inTeam and requested %}
+          Your Request to join is pending
+          {% endif %}
+        </center>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+      $(".ra-btn").on('click', function() {
+          pid = {{ project.pk }};
+          $.get("/projects/update-request/" + $(this).attr('id') + "/" + pid, function(){
+            location.reload();
+            });
+        });
+  });
+</script>
+{% endblock %}

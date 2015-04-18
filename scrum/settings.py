@@ -7,11 +7,12 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
-import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+import django.conf.global_settings as DEFAULT_SETTINGS
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +38,11 @@ else:
 TEMPLATE_DIRS = (
     template_dir,
 )
+
+
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+        'context_processors.user_menu',
+        )
 
 
 # Application definition
@@ -80,6 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
             'read_default_file': './db.cnf',
+            'init_command':'SET foreign_key_checks = 0;',
         }
     }
 }

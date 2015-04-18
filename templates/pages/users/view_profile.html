@@ -1,0 +1,14 @@
+{% extends "basics/base.html" %}
+{% block content %}
+
+Email: {{ profile_user.email }}<br>
+Projects:<br>
+<ul>
+  {% for p in projects %}
+  <li>{{ p }}</li>
+  {% endfor %}
+</ul>
+<br>
+<br>
+<a href="/user/new-message/?to={{ profile_user.pk }}" class="btn btn-primary">Send Message</a>
+{% endblock %}

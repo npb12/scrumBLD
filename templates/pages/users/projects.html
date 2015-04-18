@@ -2,7 +2,46 @@
 
 {% block content %}
 
+    <div class="col-md-10">
+      {% for p in projects %}
+      <div class="well">
+        <div class="row">
+          <div class="col-md-8">
+            <h4>{{ p }}</h4>
+            <p>{{ p.description }}</p>
+            <small>
+              {% if p.skills.needsJavaDev %}
+              <span data-original-title="Java Script Developer" data-placement="top" title="" data-toggle="tooltip" class="label label-primary">JS</span>
+              {% endif %}
+              {% if p.skills.needsFrontEndDev %}
+              <span data-original-title="Front End Web Developer" data-placement="top" title="" data-toggle="tooltip" class="label label-primary">FE</span>
+              {% endif %}
+              {% if p.skills.needsMarketing %}
+              <span data-original-title="Marketing Guru" data-placement="top" title="" data-toggle="tooltip" class="label label-primary">Marketing</span>
+              {% endif %}
+            </small>
+          </div>
+          <div class="col-md-4 text-right">
+            <br>
+            <a href="{% url 'projects.views.details' p.pk %}" class="btn btn-info">Details</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      You're not part of any projects yet. 
+      {% endfor %}
+    </div>
+    <div class="col-md-2">
+      <center>
+        <a href="{% url 'projects.views.edit_project' %}" class="btn btn-labeled btn-info" type="button">
+          <span class="btn-label">
+            <i class="fa fa-plus"></i>
+          </span>
+          Start a Project
+        </a>
+      </center>
+    </div>
 
-hello from your projects
+
 
 {% endblock %}

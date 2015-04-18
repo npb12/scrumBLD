@@ -277,7 +277,7 @@ fieldset .form-group {
    Component: typo.less
  ========================================================================== */
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #656565;
 }
 h1,
@@ -736,6 +736,10 @@ body {
 .sidebar .nav .nav > li > a:hover,
 .sidebar .nav .nav > li > .nav-item:hover {
   color: #232224;
+}
+.sidebar .nav > .unseen {
+  /*background-color: #E0E8EE;*/
+  background-color: #E6ECF0;
 }
 .sidebar .nav > .msg-item {
   border-top: 1px solid rgba(0, 0, 0, 0.05);

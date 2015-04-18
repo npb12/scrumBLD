@@ -1,0 +1,92 @@
+{% extends "basics/base.html" %}
+
+{% block content  %}
+
+<div class="row">
+  <div class="col-md-8">
+    <p>Here you can define which skills you require for your project.
+    <br>When people view your project, they will see what kinds of skills you are looking
+    for from potential team mates.</p>
+
+
+    <br><br>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-md-2 text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>Chosen Skills</h5>
+      </div>
+      <div class="panel-body">
+        <p id="chosen-skills">
+        {% for c in current_skills %}
+        <a id="{{ c.skill.pk }}" href="#" onclick="removeChosen({{ project.pk }}, {{ c.skill.pk }}, 'R', '{{ c.skill.category }}',  '{{ c.skill.fullName }}')"class="label label-success">{{ c.skill.fullName }}</a><br>
+        {% endfor %}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 text-center">
+    <strong>Web Technologies</strong><br>
+    <br>
+    <div id="webSkills">
+      {% for s in webSkills %}
+      <a href="#" id="{{ s.pk }}" class="label label-success" onclick="addChosen({{ project.pk }}, {{ s.pk }}, 'A', 'W', '{{ s.fullName }}')">{{ s.fullName }}</a><br>
+      {% endfor %}
+    </div>
+
+  </div>
+  <div class="col-md-2 text-center">
+    <strong>Business Management</strong><br>
+    <br>
+    <div id="busMan">
+      {% for s in busSkills %}
+      <a href="#" data-original-title="{{ s.description }}" data-placement="top" title="" data-toggle="tooltip" class="label label-success">{{ s.fullName }}</a><br>
+      {% endfor %}
+    </div>
+
+  </div>
+  <div class="col-md-2 text-center">
+    <strong>General</strong><br>
+    <br>
+    <div id="gen">
+      {% for s in projectSkills %}
+      <a href="#" data-original-title="{{ s.description }}" data-placement="top" title="" data-toggle="tooltip" class="label label-success">{{ s.fullName }}</a><br>
+      {% endfor %}
+    </div>
+
+  </div>
+  <div class="col-md-2 text-center">
+    <strong>Other</strong><br>
+    <br>
+    <div id="other">
+      {% for s in otherSkills %}
+      <a href="#" data-original-title="{{ s.description }}" data-placement="top" title="" data-toggle="tooltip" class="label label-success">{{ s.fullName }}</a><br>
+      {% endfor %}
+    </div>
+
+  </div>
+  <div class="col-md-1"></div>
+</div>
+<script>
+  function removeChosen(pid, sid, ar, cat, skillName ) {
+    $("#" + sid).remove();
+    $.get("/projects/add-remove-skill/" + pid + "/" + sid + "/" + ar + "/");
+    console.log(cat);
+    var $skill = "<a href='#'" + skillName + "</a><br>"; 
+    if(cat == "W") {
+      $("#webSkills").append($skill);
+    }
+
+  }
+
+  function addChosen(pid, sid, ar, cat, skillName ) {
+    $("#" + sid).remove();
+    $.get("/projects/add-remove-skill/" + pid + "/" + sid + "/" + ar + "/");
+    var $skill = "<a href='#' onclick='removeChosen(" + pid + ", " + sid + ", \"R\", \"" + cat + "\", \"" + skillName + "\")\' class='label label-success'>" + skillName + "</a><br>"
+    $("#chosen-skills").append($skill);
+  }
+</script>
+{% endblock %}

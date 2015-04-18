@@ -1,5 +1,4 @@
 scrumbld/settings.py
-db.cnf
 *.pyc
 /users/migrations/
 /sample/migrations/

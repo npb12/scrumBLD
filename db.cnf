@@ -1,0 +1,5 @@
+[client]
+database = boxhippo
+user = elijah
+password = th4t0ldSong!
+default-character-set = utf8

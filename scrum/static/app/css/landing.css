@@ -38,7 +38,6 @@ header {
   min-height: 100%;
   padding-bottom: 60px;
   text-align: center;
-  background-image: url('../img/landing/background.jpg');
   background-repeat: no-repeat;
   background-color: #fff;
   background-attachment: fixed;
@@ -149,7 +148,6 @@ header .menuapp-buttons a {
 #callout {
   background-image: url('../img/landing/callout.jpg');
   background-repeat: no-repeat;
-  background-color: #fff;
   background-attachment: fixed;
 }
 @media only screen and (min-width: 992px) {

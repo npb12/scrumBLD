@@ -26,9 +26,9 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['scrumbld.com', '.scrumbld.com']
 
-LAPTOP = True
+LAPTOP = False
 
 if LAPTOP:
     template_dir = "templates"
@@ -85,8 +85,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': './db.cnf',
-            'init_command':'SET foreign_key_checks = 0;',
+            'read_default_file': '/var/www/scrumbld/db.cnf',
         }
     }
 }

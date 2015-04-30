@@ -25,7 +25,7 @@ def register(request):
       if len(request.POST['password1']) > 5:
         new_user = authenticate(username=request.POST['username'], password=request.POST['password1'])
         login(request, new_user)
-        return HttpResponseRedirect("/landing/")
+        return HttpResponseRedirect("/")
   else:
     form = UserCreationForm()
   return render(request, "registration/register.html", { 'form': form, })
@@ -213,6 +213,7 @@ def view_profile(request, uid):
 
 
 
+@login_required
 def edit_profile(request, uid):
   u = User.objects.get(pk = uid)
   if request.method == "POST":

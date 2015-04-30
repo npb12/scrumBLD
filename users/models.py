@@ -50,4 +50,4 @@ class NewMessageForm(ModelForm):
 class EditProfileForm(ModelForm):
   class Meta:
     model = UserProfile
-    fields = ('github', 'user')
+    fields = ('github',)

@@ -47,7 +47,7 @@
             No projects found. 
           </div>
           <div class="col-lg-6 text-right">
-            <a href="#" class="btn btn-primary">Create a Project</a>
+            <a href="{% url 'projects.views.edit_project' %}" class="btn btn-primary">Create a Project</a>
           </div>
           {% endfor %}
         </div>

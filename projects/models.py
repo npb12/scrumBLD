@@ -12,9 +12,11 @@ from users.models import UserProfile
 
 class Skill(models.Model):
   CATEGORY_CHOICES = (
-          ('W', 'Web Technologies'),
-          ('B', 'Business Development'),
-          ('P', 'Project Management'),
+          ('PW', 'Programming & IT - Web'),
+          ('PM', 'Programming & IT - Mobile'),
+          ('PI', 'Programming & IT - Other'),
+          ('B', 'Business'),
+          ('D', 'Design'),
           ('O', 'Other'),
           )
 

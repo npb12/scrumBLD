@@ -7,9 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Min, Q
 from itertools import chain
 from django.core import serializers
+from django.core.urlresolvers import reverse
 
 from django.contrib.auth.models import User
-from users.models import UserProfile, Associate, Message, NewMessageForm, EditProfileForm
+from users.models import UserProfile, Associate, Message, NewMessageForm, EditUsernameForm, EditProfileForm
 from projects.models import Project, Request
 
 import datetime
@@ -216,13 +217,22 @@ def view_profile(request, uid):
 @login_required
 def edit_profile(request, uid):
   u = User.objects.get(pk = uid)
+  redirect_to = reverse('users.views.dashboard')
   if request.method == "POST":
-    return HttpResponse("posted")
+    form = EditUsernameForm(request.POST, instance = u)
+    profile = EditProfileForm(request.POST, instance = u.userprofile)
+    if form.is_valid() and profile.is_valid():
+      form.save()
+      profile.save()
+      return HttpResponseRedirect(redirect_to)
   else:
-    form = EditProfileForm(instance = u.userprofile)
+    form = EditUsernameForm(instance = u)
+    profile = EditProfileForm(instance = u.userprofile)
 
   c = {
+          'title': 'Edit Profile',
           'form': form,
+          'profile': profile,
           }
 
   return render(request, "pages/users/edit_profile.html", c)

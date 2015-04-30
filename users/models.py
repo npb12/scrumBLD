@@ -51,3 +51,8 @@ class EditProfileForm(ModelForm):
   class Meta:
     model = UserProfile
     fields = ('github',)
+
+class EditUsernameForm(ModelForm):
+  class Meta:
+    model = User
+    fields = ('username',)

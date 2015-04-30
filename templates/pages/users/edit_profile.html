@@ -1,7 +1,62 @@
 {% extends "basics/base.html" %}
 {% block content %}
 
-{{ form }}
+
+  <div class="row">
+    <div class="col-lg-12">
+    <form method="post" action="#" class="form-horizontal">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    <br>
+    
+    <div class="form-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-body">
+            {% if form.username.errors %}
+            <div class="form-group has-error">
+            {% else %}
+            <div class="form-group">
+            {% endif %}
+            <div class="row">
+              <div class="col-lg-2">
+                <label class="control-label">{{ form.username.label }}</label>
+              </div>
+              <div class="col-lg-10">
+                {{ form.username|add_class:"form-control" }}
+                {{ form.username.help_text }}
+                <br>
+                <br>
+                <br>
+                <br>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-2">
+                <label class="control-label">{{ profile.github.label }}</label>
+              </div>
+              <div class="col-lg-10">
+                {{ profile.github|add_class:"form-control" }}
+                <br>
+                {{ profile.github.help_text }}
+                <br>
+                <br>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-lg-10 col-lg-offset-2">
+                <input type="submit" class="btn btn-success" value="Save">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </form>
+  </div>
 
 
 {% endblock %}
